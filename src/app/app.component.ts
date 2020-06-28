@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Gerenciador de Tarefas';
+  task: Task = new Task(21, 'Enviar orçamento');
+  task2: Task = new Task(23, 'Enviar Presente');
+
+}
+
+export class Task {
+  public id: number;
+  public title: string;
+
+  constructor(id: number, title: string) {
+    this.id = id;
+    this.title = title;
+  }
 }
