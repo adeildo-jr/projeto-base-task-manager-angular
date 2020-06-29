@@ -9,10 +9,10 @@
     <td>{{ task.id }}</td>
     <td>{{ task.title }}</td>
     <td>
-      <button class="btn btn-info" data-toggle="modal" data-target="#taskDetail" (click)="onSelect(task)">
+      <a [routerLink]="['/tasks', task.id]" class="btn btn-info">
         <i data-feather="info"></i>
         Detalhes
-      </button>
+      </a>
       <button class="btn btn-danger">
         <i data-feather="trash-2"></i>
         Excluir
