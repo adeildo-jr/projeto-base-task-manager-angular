@@ -10,8 +10,6 @@ import { Task } from './tasks/shared/task.model';
 })
 export class AppComponent implements  AfterViewInit {
   title = 'Gerenciador de Tarefas';
-  task: Task = new Task(21, 'Enviar orçamento');
-  task2: Task = new Task(23, 'Enviar Presente');
 
   ngAfterViewInit() {
     Feather.replace();
