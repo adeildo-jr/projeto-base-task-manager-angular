@@ -14,7 +14,14 @@ const TASKS: Array<Task> = [
 @Injectable()
 
 export class TaskService {
-  public getTasks(): Array<Task> {
-    return TASKS;
+  public getTasks(): Promise<Task[]> {
+    const promise = new Promise((resolve, reject) => {
+      if (TASKS.length > 0) {
+        resolve(TASKS);
+      } else {
+        reject('Sem tarefas');
+      }
+    });
+    return promise;
   }
 }
