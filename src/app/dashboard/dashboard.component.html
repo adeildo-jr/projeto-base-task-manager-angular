@@ -1,3 +1,14 @@
 <h3>
   Painel de Controle
 </h3>
+
+<table>
+  <thead>
+    <th>Tarefas</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let task of tasks">
+    <td>{{ task.title }}</td>
+  </tr>
+  </tbody>
+</table>
