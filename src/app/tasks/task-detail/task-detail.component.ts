@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
@@ -10,8 +10,8 @@ import { TaskService } from '../shared/task.service';
   templateUrl: './task-detail.component.html'
 })
 
-export class TaskDetailComponent implements OnInit{
-  @Input() public task: Task;
+export class TaskDetailComponent implements OnInit {
+  public task: Task;
   public constructor (
     private taskService: TaskService,
     private route: ActivatedRoute
