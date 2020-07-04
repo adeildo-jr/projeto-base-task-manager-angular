@@ -37,4 +37,17 @@ export class TasksComponent implements OnInit {
         );
     }
   }
+
+  public deleteTask(task: Task) {
+    const confirmed = confirm('Você quer excluir a tarefa?');
+    if (confirmed) {
+      this.taskService.deleteTask(task.id)
+        .subscribe(
+          () => {
+            this.tasks = this.tasks.filter(t => t !== task);
+          },
+          () => alert('Não foi possível excluir a tarefa')
+        );
+    }
+  }
 }
