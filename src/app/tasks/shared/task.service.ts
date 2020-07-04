@@ -26,6 +26,18 @@ export class TaskService {
       .map(tasks => tasks.slice(0, 3));
   }
 
+  public createTask(task: Task): Observable <Task> {
+    const url = this.taskUrl;
+    const body = JSON.stringify(task);
+    const headers = new Headers({
+      'Content-type': 'application/json'
+    });
+
+    return this.http.post(url, body, {headers})
+      .catch(this.handleError)
+      .map(response => response.json().data as Task);
+  }
+
   public getTask(id: number): Observable <Task> {
     const url = `${this.taskUrl}/${id}`;
     return this.http.get(url)
