@@ -11,62 +11,58 @@ import { Task } from './task.model';
 
 export class TaskService {
   public taskUrl = 'api/tasks';
+  public headers = new Headers({
+    'Content-type': 'application/json'
+  });
 
   public constructor(private http: Http) { }
 
-  public getTasks(): Observable<Task[]> {
+  public getAll(): Observable<Task[]> {
     return this.http.get(this.taskUrl)
       .catch(this.handleError)
       .map((response: Response) => response.json().data as Task[]);
   }
 
-  public getImportantTasks(): Observable <Task[]> {
-    return this.getTasks()
+  public getImportant(): Observable <Task[]> {
+    return this.getAll()
       .catch(this.handleError)
       .map(tasks => tasks.slice(0, 3));
   }
 
-  public createTask(task: Task): Observable <Task> {
+  public create(task: Task): Observable <Task> {
     const url = this.taskUrl;
     const body = JSON.stringify(task);
-    const headers = new Headers({
-      'Content-type': 'application/json'
-    });
 
-    return this.http.post(url, body, {headers})
+    return this.http.post(url, body, {headers: this.headers})
       .catch(this.handleError)
       .map(response => response.json().data as Task);
   }
 
-  public getTask(id: number): Observable <Task> {
+  public getById(id: number): Observable <Task> {
     const url = `${this.taskUrl}/${id}`;
+
     return this.http.get(url)
       .catch(this.handleError)
       .map((response: Response) => response.json().data as Task);
   }
 
-  public deleteTask(id: number): Observable <null> {
+  public delete(id: number): Observable <null> {
     const url = `${this.taskUrl}/${id}`;
-    const headers = new Headers({
-      'Content-type': 'application/json'
-    });
 
-    return this.http.delete(url, {headers})
+    return this.http.delete(url, {headers: this.headers})
       .catch(this.handleError)
       .map(() => null );
   }
 
-  public updateTask(task: Task): Observable<Task> {
+  public update(task: Task): Observable<Task> {
     const url = `${this.taskUrl}/${task.id}`;
     const body = JSON.stringify(task);
-    const headers = new Headers({
-      'Content-type': 'application/json'
-    });
 
-    return this.http.put(url, body, { headers })
+    return this.http.put(url, body, {headers: this.headers})
       .catch(this.handleError)
       .map(() => task);
   }
+
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw(error);

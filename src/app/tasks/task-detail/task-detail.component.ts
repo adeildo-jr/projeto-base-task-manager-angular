@@ -23,7 +23,7 @@ export class TaskDetailComponent implements OnInit {
 
   public ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) =>  this.taskService.getTask(+params['id']))
+      .switchMap((params: Params) =>  this.taskService.getById(+params['id']))
       .subscribe(
         task => this.task = task,
           error => alert('Internal server error')
@@ -38,7 +38,7 @@ export class TaskDetailComponent implements OnInit {
     if (!this.task.title) {
       alert('Tarefa deve ter um título');
     } else {
-      this.taskService.updateTask(this.task)
+      this.taskService.update(this.task)
         .subscribe(
           () => alert('Tarefa atualizada com sucesso'),
           () => alert('Error!')
