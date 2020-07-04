@@ -17,7 +17,7 @@ export class TaskService {
       .map((response: Response) => response.json().data as Task[]);
   }
 
-  public getImportantTaks(): Observable <Task[]> {
+  public getImportantTasks(): Observable <Task[]> {
     return this.getTasks()
       .map(tasks => tasks.slice(0, 3));
   }
