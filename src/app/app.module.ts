@@ -20,12 +20,14 @@ import { AppRoutingModule } from './app-routing.module';
 // In memory api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryTaskDataService } from './in-memory-task-data.service';
+import {TaskSearchComponent} from './navbar/task-search/task-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     NavbarComponent,
+    TaskSearchComponent,
     TasksComponent,
     TaskDetailComponent
   ],
