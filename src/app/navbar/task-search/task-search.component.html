@@ -1,12 +1,8 @@
 <div style="position: relative">
   <div class="form-group">
-    <input class="form-control" type="search" placeholder="Digite para buscar" aria-label="Busca de tarefa">
+    <input #searchInput class="form-control" (keyup)="search(searchInput.value)" type="text" placeholder="Digite para buscar" aria-label="Busca de tarefa">
   </div>
   <div class="list-group" style="position: absolute; width: 100%; left: 0; top: 45px; z-index: 1000">
-    <a href="#" class="list-group-item">Listagem</a>
-    <a href="#" class="list-group-item">Listagem</a>
-    <a href="#" class="list-group-item">Listagem</a>
-    <a href="#" class="list-group-item">Listagem</a>
-    <a href="#" class="list-group-item">Listagem</a>
+    <a *ngFor="let task of tasks" (click)="goToTask(task)" class="list-group-item" style="cursor: pointer">{{ task.title}}</a>
   </div>
 </div>
